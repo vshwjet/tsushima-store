@@ -2,12 +2,11 @@ import { products } from "../../data/product"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { id: string }
+export default async function ProductPage(props: { 
+  params: Promise<{ id: string }> 
 }) {
-  const product = products.find((p) => p.id.toString() === params.id)
+  const { id } = await props.params
+  const product = products.find((p) => p.id.toString() === id)
 
   if (!product) {
     notFound()
