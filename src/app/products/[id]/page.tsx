@@ -2,7 +2,13 @@ import { products } from "../../data/product"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string
+  }
+}
+
+export default function ProductPage({ params }: PageProps) {
   const product = products.find((p) => p.id.toString() === params.id)
 
   if (!product) {
